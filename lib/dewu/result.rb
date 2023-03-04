@@ -9,7 +9,7 @@ module Dewu
     end
 
     def success?
-      self["code"] == CODE_SUCCESS
+      self["code"] == Dewu::Result::CODE_SUCCESS
     end
   end
 end
