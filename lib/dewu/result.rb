@@ -1,19 +1,15 @@
 module Dewu
   class Result < ::Hash
-    SUCCESS_FLAG = 'SUCCESS'.freeze
+    CODE_SUCCESS = 200
 
     def initialize(result)
       super
 
-      if result['xml'].class == Hash
-        result['xml'].each_pair do |k, v|
-          self[k] = v
-        end
-      end
+      self.merge!(result)
     end
 
     def success?
-      self['return_code'] == SUCCESS_FLAG && self['result_code'] == SUCCESS_FLAG
+      self["code"] == CODE_SUCCESS
     end
   end
 end

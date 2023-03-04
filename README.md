@@ -22,10 +22,17 @@ Or install it yourself as:
 
 ## Usage
 
-```
+```bash
     export DEWU_DEBUG=[app_key],[app_secret]
+```
 
-    Dewu::Service.auth_brand_list
+```ruby
+    require 'json'
+    require 'dewu'
+
+    r = Dewu::Service.auth_brand_list
+    r.success?
+    puts JSON.pretty_generate(r)
 ```
 
 ## Development

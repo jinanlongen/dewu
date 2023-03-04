@@ -1,6 +1,7 @@
 # coding: utf-8
-require 'httparty'
-require 'active_support/core_ext/hash/conversions'
+require "httparty"
+require "active_support/core_ext/hash/conversions"
+require "dewu/result"
 
 module Dewu
   module Service
@@ -34,6 +35,7 @@ module Dewu
 
     class << self
       private
+
       def check_required_options(options, names)
         names.each do |name|
           warn("Dewu Warn: missing required option: #{name}") unless options.has_key?(name)
@@ -45,31 +47,43 @@ module Dewu
       end
 
       def merge_params(params)
-        params = params.merge({ 
+        params = params.merge({
           :app_key => Dewu.app_key,
-          :timestamp => (Time.now().to_f * 1000).to_i # current timestamp in milliseconds
+          :timestamp => (Time.now().to_f * 1000).to_i, # current timestamp in milliseconds
         })
         sign = Dewu::Sign.generate(params)
-        
-        params.merge({ 
-          :sign => sign
+
+        params.merge({
+          :sign => sign,
         })
       end
-      
+
       def get(path, params = {})
-        HTTParty.get(
-            make_url(path), 
-            :headers => {"Content-type" => 'application/json'},
-            :query => merge_params(params)
+        r = HTTParty.get(
+          make_url(path),
+          :headers => { "Content-type" => "application/json" },
+          :query => merge_params(params),
         ).parsed_response
+
+        if r
+          Dewu::Result.new(r)
+        else
+          nil
+        end
       end
 
       def post(path, params = {})
-        HTTParty.post(
-            make_url(path),
-            :headers => {"Content-type" => 'application/json'},
-            :body => merge_params(params).to_json
+        r = HTTParty.post(
+          make_url(path),
+          :headers => { "Content-type" => "application/json" },
+          :body => merge_params(params).to_json,
         ).parsed_response
+
+        if r
+          Dewu::Result.new(r)
+        else
+          nil
+        end
       end
     end
   end
