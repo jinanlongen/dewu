@@ -23,7 +23,7 @@ Or install it yourself as:
 ## Usage
 
 ```bash
-    export DEWU_DEBUG=[app_key],[app_secret]
+    export DEWU_DEBUG=[app_key],[app_secret][,1]
 ```
 
 ```ruby
