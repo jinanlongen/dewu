@@ -6,7 +6,16 @@ module Dewu
 
     def generate(params)
       query = params.sort.map { |key, value|
-        value = value.join(",") if value.is_a?(Array)
+        if value.is_a?(Array)
+          value = value.map { |v|
+            v.is_a?(String) ? v : v.to_json
+          }.join(",")
+        elsif value.is_a?(String)
+          value
+        elsif value.is_a?(Object)
+          value = value.to_json
+        end
+
         "#{key}=#{CGI.escape(value.to_s)}" if value && !value.to_s.empty?
       }.compact.join("&")
 
