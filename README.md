@@ -31,6 +31,8 @@ Or install it yourself as:
     require 'dewu'
 
     r = Dewu::Service.auth_brand_list
+    r = Dewu::Service.auth_brand_list(page_no: 1)
+    r = Dewu::Service.batch_article_number('1012A910')
     r.success?
     puts JSON.pretty_generate(r)
 ```

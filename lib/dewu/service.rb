@@ -27,8 +27,8 @@ module Dewu
 
     # 通过货号批量获取商品spu信息
     # https://open.dewu.com/#/api/body?apiId=156&id=2&title=%E5%95%86%E5%93%81%E6%9C%8D%E5%8A%A1API
-    def batch_article_number(params = {})
-      post("v1/spu/batch_article_number", params)
+    def batch_article_number(article_numbers)
+      post("v1/spu/batch_article_number", { article_numbers: article_numbers.split(",") })
     end
 
     private
