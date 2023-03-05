@@ -27,6 +27,14 @@ Or install it yourself as:
 ```
 
 ```ruby
+    require 'dewu'
+
+    Dewu.app_key = '[app_key]'
+    Dewu.app_secret = '[app_secret]'
+    Dewu.base_uri = [Dewu::PRODUCTION_URL or Dewu::SANDBOX_URL]
+```
+
+```ruby
     require 'json'
     require 'dewu'
 
