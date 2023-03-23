@@ -18,7 +18,7 @@ puts JSON.pretty_generate(r)
 
 r = Dewu::Service.auth_brand_list;  # brand/
 
-r = Dewu::Service.brand_category_spus_oversea_sync(9, { category_id: 31 });  # 9: Vans,
+r = Dewu::Service.brand_category_spus_oversea_sync(9, { category_ids: 31 });  # 9: Vans,
 r = Dewu::Service.batch_article_number("VN0A38G6N9E")  # => spu/sku list
 
 r = Dewu::Service.bidding_generic_list(3, spu_id: 2165) #
