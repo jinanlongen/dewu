@@ -23,7 +23,10 @@ Or install it yourself as:
 ## Usage
 
 ```bash
-    export DEWU_DEBUG=[app_key],[app_secret][,1]
+    # env_type: 1 => production
+    # env_type: 0 => sandbox
+
+    export DEWU_DEBUG=[app_key],[app_secret][,env_type]
 ```
 
 ```ruby
