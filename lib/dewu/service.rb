@@ -33,6 +33,12 @@ module Dewu
       post("v1/bidding/generic_list", { bidding_type: bidding_type }.merge { params })
     end
 
+    # 商家出价详情信息（支持部分出价类型）
+    def bidding_generic_detail(bidding_no)
+      post("v1/bidding/generic_detail", { bidding_no: bidding_no })
+    end
+
+    #Ex:- :default =>''
     # 获取商家出价列表信息【普通现货】
     def bidding_normal_list(bidding_type, sku_id, spu_id, merchant_sku_code, params = {})
       post("v1/bidding/normal/normal_list", { sku_id: sku_id, spu_id: spu_id, merchant_sku_code: merchant_sku_code }.merge { params })
